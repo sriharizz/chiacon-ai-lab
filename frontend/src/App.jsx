@@ -95,14 +95,10 @@ export default function App() {
       </nav>
 
       {/* ===== Main Content ===== */}
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div className="main-layout">
 
         {/* ===== LEFT PANEL ===== */}
-        <div style={{
-          width: '380px', flexShrink: 0, padding: '32px 28px',
-          background: 'var(--bg-white)', borderRight: '1px solid var(--border)',
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
-        }}>
+        <div className="left-panel">
           {/* Top section */}
           <div>
             {/* Headline */}
@@ -184,9 +180,9 @@ export default function App() {
         </div>
 
         {/* ===== RIGHT PANEL — AI DEMO ===== */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div className="right-panel">
           {/* Demo Header + Input */}
-          <div style={{ padding: '24px 32px 0', flexShrink: 0 }}>
+          <div className="right-panel-header">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Sparkles style={{ width: '16px', height: '16px', color: 'var(--teal)' }} />
