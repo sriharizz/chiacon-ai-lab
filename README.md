@@ -1,10 +1,9 @@
 # Chiacon AI Lab - Intelligent Automation Platform
 
 This is the repository for the **Chiacon AI Lab** frontend and backend systems, featuring the **AI Use Case Generator** — a tool that turns business problems into strategic AI implementation roadmaps instantly.
+<img width="1919" height="982" alt="Screenshot 2026-03-06 163821" src="https://github.com/user-attachments/assets/18f8fb1b-8aee-46d8-ad87-d8c49841b6b8" />
 
-![Chiacon AI Lab Demo - Screen 1](frontend/public/screenshot-1.png)
-<br/>
-![Chiacon AI Lab Demo - Screen 2](frontend/public/screenshot-2.png)
+<img width="1888" height="949" alt="Screenshot 2026-03-06 163851" src="https://github.com/user-attachments/assets/17a35079-c28b-4510-9578-e20f03a0aca4" />
 
 ## Tech Stack
 
@@ -73,4 +72,4 @@ This is a monorepo setup containing both the frontend and backend:
 - **Animations:** Engaging loading states and staggered results animations.
 
 ---
-*Built by Chiacon Consulting*
+*eveloped for the Chiacon AI Lab by [Sri Hari]*
