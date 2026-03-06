@@ -72,4 +72,4 @@ This is a monorepo setup containing both the frontend and backend:
 - **Animations:** Engaging loading states and staggered results animations.
 
 ---
-*eveloped for the Chiacon AI Lab by [Sri Hari]*
+*eveloped for the Chiacon AI Lab by Sri Hari*
