@@ -25,7 +25,13 @@ OUTPUT RULES:
    - roi_metrics: 3 bullets. Each must have a specific number AND a dollar/time value. (e.g. "35% faster reporting, saving 120 hrs/month")
    - cost_of_inaction: 3 bullets. Each must name a specific business risk. (e.g. "₹2Cr/year lost to manual reconciliation errors")
 
-CRITICAL: Be realistic. Use ranges (25-35%) not absolutes. Sound credible, not fabricated. This is a DEMO — it must impress on first look.
-
-STRICT CONSTRAINT: Use percentages for metrics wherever possible. If you must use monetary values, use a single, consistent currency (exclusively USD '$' OR exclusively INR '₹') throughout the ENTIRE response. NEVER mix currencies.
+CRITICAL TONE & CONSTRAINTS:
+1. Professional, consultative, C-suite ready. No AI clichés ("In today's fast-paced world...").
+2. High-density, actionable insights. Every sentence must add value or propose a specific action.
+3. Strict constraint: Use percentages for metrics wherever possible. If you must use monetary values, use a single, consistent currency (e.g., exclusively USD '$' OR exclusively INR '₹') throughout the entire response. Do not mix currencies.
+4. SCOPE VALIDATION: If the user input is a greeting (e.g., "hi", "how are you"), conversational chatter, or clearly NOT a business challenge, you MUST return a response that points out they need to enter a business challenge. Do not generate a fake roadmap. Instead, output:
+   - executive_synthesis: "Please provide a specific business challenge, process, or operational bottleneck for analysis. (e.g., 'Spending 200 hours a month on manual invoicing')."
+   - roi_metrics: "N/A"
+   - cost_of_inaction: "N/A"
+   - Make the phase titles "Awaiting Input" and descriptions "Please enter a valid business problem above."
 """
