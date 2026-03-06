@@ -63,13 +63,17 @@ async def generate_analysis(request: GenerateRequest):
         raise HTTPException(status_code=400, detail="Please describe your business problem in more detail (at least 5 words).")
 
     # Guardrail: Intercept conversational inputs instantly
-    problem_lower = problem.lower()
-    conversational_starts = [
-        "hi", "hello", "hey", "how are you", "who are you", "tell me", "what is", "test", "testing",
-        "what's up", "whats up", "good morning", "good afternoon", "good evening", "greetings", 
-        "yo ", "sup", "are you there", "can you", "do you", "i want to", "help me", "write a", "ignore all"
-    ]
-    if any(problem_lower.startswith(x) for x in conversational_starts) and len(problem.split()) < 15:
+    # Guardrail: Intercept conversational inputs safely
+    import string
+    cleaned_problem = problem.lower().translate(str.maketrans('', '', string.punctuation)).strip()
+    
+    # Exact matches for small talk
+    exact_junk = ["hi", "hello", "hey", "how are you", "who are you", "test", "testing", "whats up", "sup", "yo", "good morning"]
+    
+    # Check if the ENTIRE input is just small talk, OR if it starts with small talk but is very short (< 6 words)
+    is_junk = cleaned_problem in exact_junk or (any(cleaned_problem.startswith(x) for x in exact_junk) and len(problem.split()) < 6)
+    
+    if is_junk:
         return ConsultantResponse(
             executive_synthesis="Your input appears to be conversational or a test. Please provide a specific business challenge, process, or operational bottleneck for analysis. (e.g., 'Spending 200 hours a month on manual invoicing').",
             strategic_roadmap=[
