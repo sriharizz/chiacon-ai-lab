@@ -250,6 +250,7 @@ body {
     border-right: none;
     border-bottom: 1px solid var(--border);
     padding: 24px 20px;
+    overflow: visible;
   }
 
   .right-panel {
