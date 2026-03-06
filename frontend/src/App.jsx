@@ -66,10 +66,15 @@ export default function App() {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ business_problem: problem }),
       })
-      if (!res.ok) throw new Error(`Error: ${res.status}`)
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null)
+        throw new Error(errorData?.detail || `Error: ${res.status}`)
+      }
+
       setResult(await res.json())
     } catch (err) {
-      setError('Could not reach the AI service. Please try again.')
+      setError(err.message === 'Failed to fetch' ? 'Could not reach the AI service. Please try again.' : err.message)
     } finally { setLoading(false) }
   }
 
