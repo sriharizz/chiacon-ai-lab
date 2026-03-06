@@ -62,6 +62,27 @@ async def generate_analysis(request: GenerateRequest):
     if len(problem.split()) < 4:
         raise HTTPException(status_code=400, detail="Please describe your business problem in more detail (at least 5 words).")
 
+    # Guardrail: Intercept conversational inputs instantly
+    problem_lower = problem.lower()
+    conversational_starts = [
+        "hi", "hello", "hey", "how are you", "who are you", "tell me", "what is", "test", "testing",
+        "what's up", "whats up", "good morning", "good afternoon", "good evening", "greetings", 
+        "yo ", "sup", "are you there", "can you", "do you", "i want to", "help me", "write a", "ignore all"
+    ]
+    if any(problem_lower.startswith(x) for x in conversational_starts) and len(problem.split()) < 15:
+        return ConsultantResponse(
+            executive_synthesis="Your input appears to be conversational or a test. Please provide a specific business challenge, process, or operational bottleneck for analysis. (e.g., 'Spending 200 hours a month on manual invoicing').",
+            strategic_roadmap=[
+                {"phase": "Invalid Input", "title": "Awaiting Business Problem", "description": "Please enter a valid business problem above to generate a strategic roadmap. We need a specific operational challenge.", "key_technologies": ["N/A", "N/A", "N/A"]},
+                {"phase": "Invalid Input", "title": "Awaiting Business Problem", "description": "Please enter a valid business problem above to generate a strategic roadmap. We need a specific operational challenge.", "key_technologies": ["N/A", "N/A", "N/A"]},
+                {"phase": "Invalid Input", "title": "Awaiting Business Problem", "description": "Please enter a valid business problem above to generate a strategic roadmap. We need a specific operational challenge.", "key_technologies": ["N/A", "N/A", "N/A"]}
+            ],
+            business_impact={
+                "roi_metrics": ["Awaiting Input", "Awaiting Input", "Awaiting Input"],
+                "cost_of_inaction": ["Awaiting Input", "Awaiting Input", "Awaiting Input"]
+            }
+        )
+
     last_error = None
 
     for model in MODELS:
